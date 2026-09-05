@@ -296,10 +296,9 @@ arduino-timed-traffic-signal/
 │   ├── hardware.md
 │   └── testing.md
 │
-├── circuit/
-│   ├── circuit-diagram.png
-│   └── wiring-diagram.png
-│
+├── builders/
+│   ├── Meet the Team.png
+│  
 └── screenshots/
     ├── simulation.png
     └── final-output.png
