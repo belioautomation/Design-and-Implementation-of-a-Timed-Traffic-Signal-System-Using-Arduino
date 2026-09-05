@@ -297,8 +297,13 @@ arduino-timed-traffic-signal/
 │   └── testing.md
 │
 ├── builders/
-│   ├── Meet the Team.png
-│  
+│   └── Meet the Team.png
+│
+├── Papers/
+│   ├── Cover Page
+│   ├── Table of Contents
+│   └── Final Project Paper
+│
 └── screenshots/
     ├── simulation.png
     └── final-output.png
