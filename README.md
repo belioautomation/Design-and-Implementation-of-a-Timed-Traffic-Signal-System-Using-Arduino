@@ -6,105 +6,83 @@
 
 ## 📌 Project Overview
 
-**Design and Implementation of a Timed Traffic Signal System Using Arduino** is a completed first-year culminating project developed as part of the **Bachelor of Science in Information Technology (BSIT)** program.
+**Design and Implementation of a Timed Traffic Signal System Using Arduino** is a completed culminating project developed as part of the **Bachelor of Science in Information Technology (BSIT)** program.
 
-The project demonstrates the application of fundamental concepts learned during the first year of study, particularly **programming, digital logic, sequential systems, embedded systems, problem-solving, hardware implementation, testing, and debugging**.
+The project demonstrates foundational first-year skills in **programming, digital logic, embedded systems, hardware implementation, testing, debugging, and problem-solving**.
 
-The completed system implements a timed traffic signal controller using an **Arduino Uno**, three LEDs representing the traffic signals, and a **7-segment display** for the countdown timer.
-
-The traffic signal operates through a predefined sequence of three states:
+The system uses an **Arduino Uno** to control three traffic LEDs and a **7-segment display** that shows the remaining time for each traffic-light state.
 
 ```text
 RED → YELLOW → GREEN → RED → ...
 ```
 
-Each state has a specific duration and is controlled by the Arduino through programmed sequential logic.
+Each state operates for a predefined duration and repeats continuously.
 
 ---
 
-# 🎓 Project Context
+## 🎓 Project Context
 
-This project was created as part of the **completion of the first year of the Bachelor of Science in Information Technology (BSIT) program**.
+This project was developed as part of the **completion of the first year of the BSIT program**.
 
-As a culminating project, it brings together the foundational knowledge and technical skills developed throughout the first year.
-
-The completed project demonstrates the ability to:
-
-* Analyze a technical problem
-* Design a logical solution
-* Apply digital logic concepts
-* Program a microcontroller
-* Connect and control electronic components
-* Implement a sequential system
-* Test system behavior
-* Troubleshoot hardware and software issues
-* Document a completed technical project
-
-The project therefore serves as a practical demonstration of the student's first-year learning experience in BSIT.
+It serves as a practical application of the technical concepts and skills learned during the first year, combining software programming with digital logic and physical hardware implementation.
 
 ---
 
-# 🎯 Project Objectives
+## 🎯 Objectives
 
-The completed project achieved the following objectives:
+The project was designed to:
 
-* Designed a timed traffic signal system using an Arduino Uno.
-* Implemented a state-based traffic-light sequence.
-* Applied sequential digital logic concepts.
-* Controlled Red, Yellow, and Green LEDs through the Arduino.
-* Implemented a countdown timer using a 7-segment display.
-* Eliminated the need for external integrated circuits for the main control logic.
-* Demonstrated the traffic signal sequence through simulation and/or physical hardware.
-* Tested the timing, LED outputs, countdown display, and state transitions.
-* Documented the complete system and its implementation.
+* Implement a timed traffic signal using an Arduino Uno.
+* Apply sequential digital logic and state-based control.
+* Control Red, Yellow, and Green LEDs.
+* Implement a countdown timer using a 7-segment display.
+* Test timing, outputs, and state transitions.
+* Apply programming, hardware implementation, debugging, and problem-solving skills.
 
 ---
 
-# ⚙️ System Description
+## ⚙️ System Description
 
-The completed system is a **sequential state-based traffic signal controller**.
+The Arduino Uno serves as the main controller of the system. It executes a predefined sequence consisting of three states:
 
-The Arduino Uno functions as the main controller and executes the programmed sequence continuously.
+```text
+S0 → S1 → S2 → S0
+
+S0 = Red
+S1 = Yellow
+S2 = Green
+```
+
+The traffic LEDs and countdown display are updated according to the active state.
 
 ### System Flow
 
 ```text
-        Arduino Uno
-             │
-             ▼
-      State Controller
-             │
-     ┌───────┼────────┐
-     ▼       ▼        ▼
-    RED    YELLOW    GREEN
-     │       │        │
-     └───────┼────────┘
-             │
-             ▼
-     7-Segment Countdown
+             Arduino Uno
+                  │
+                  ▼
+           State Controller
+                  │
+        ┌─────────┼─────────┐
+        ▼         ▼         ▼
+       RED      YELLOW     GREEN
+        │         │         │
+        └─────────┼─────────┘
+                  ▼
+         7-Segment Countdown
 ```
-
-The system does not require external physical input devices. The state transitions are controlled automatically according to the programmed timing.
 
 ---
 
-# 🔄 Traffic Signal Sequence
+## 🔄 Traffic Signal Sequence
 
-The completed system uses three states.
+| State  | Signal    | Countdown             | Duration |
+| ------ | --------- | --------------------- | -------: |
+| **S0** | 🔴 Red    | 5 → 4 → 3 → 2 → 1 → 0 |    5 sec |
+| **S1** | 🟡 Yellow | 2 → 1 → 0             |    2 sec |
+| **S2** | 🟢 Green  | 5 → 4 → 3 → 2 → 1 → 0 |    5 sec |
 
-| State  | Traffic Signal | Countdown             |  Duration |
-| ------ | -------------- | --------------------- | --------: |
-| **S0** | 🔴 Red         | 5 → 4 → 3 → 2 → 1 → 0 | 5 seconds |
-| **S1** | 🟡 Yellow      | 2 → 1 → 0             | 2 seconds |
-| **S2** | 🟢 Green       | 5 → 4 → 3 → 2 → 1 → 0 | 5 seconds |
-
-The states continuously cycle:
-
-```text
-S0 → S1 → S2 → S0
-```
-
-Therefore:
+The sequence continuously repeats:
 
 ```text
 RED
@@ -120,9 +98,9 @@ REPEAT
 
 ---
 
-# 🔢 Digital Logic Implementation
+## 🔢 Digital Logic
 
-The system was designed using three logical states:
+The system uses three logical states:
 
 ```text
 S0 = Red State
@@ -130,7 +108,7 @@ S1 = Yellow State
 S2 = Green State
 ```
 
-The traffic-light outputs are represented by:
+The traffic outputs correspond to the active state:
 
 ```text
 R = S0
@@ -138,53 +116,37 @@ Y = S1
 G = S2
 ```
 
-Where:
+### State Table
 
-```text
-R = Red LED
-Y = Yellow LED
-G = Green LED
-```
+| State  | Red | Yellow | Green |
+| ------ | --: | -----: | ----: |
+| **S0** |   1 |      0 |     0 |
+| **S1** |   0 |      1 |     0 |
+| **S2** |   0 |      0 |     1 |
 
-Each traffic-light output corresponds to its respective active state.
-
----
-
-# 📊 State Table
-
-The final state behavior is represented by the following table:
-
-| State | Red | Yellow | Green |
-| ----- | --: | -----: | ----: |
-| S0    |   1 |      0 |     0 |
-| S1    |   0 |      1 |     0 |
-| S2    |   0 |      0 |     1 |
-
-`1` indicates that the corresponding LED is ON, while `0` indicates that it is OFF.
+`1` represents ON and `0` represents OFF.
 
 ---
 
-# 🔌 Hardware Components
+## 🔌 Hardware Components
 
-The completed project used the following components:
-
-| Component         |    Quantity | Function                     |
-| ----------------- | ----------: | ---------------------------- |
-| Arduino Uno       |           1 | Main controller              |
-| Breadboard        |           1 | Circuit assembly             |
-| Red LED           |           1 | Stop indicator               |
-| Yellow LED        |           1 | Caution indicator            |
-| Green LED         |           1 | Go indicator                 |
-| 7-Segment Display |           1 | Countdown display            |
-| 220Ω Resistors    | As required | Current limiting             |
-| Jumper Wires      |     Several | Electrical connections       |
-| USB Cable         |           1 | Programming/power connection |
+| Component         |    Quantity | Purpose                |
+| ----------------- | ----------: | ---------------------- |
+| Arduino Uno       |           1 | Main controller        |
+| Breadboard        |           1 | Circuit assembly       |
+| Red LED           |           1 | Stop indicator         |
+| Yellow LED        |           1 | Caution indicator      |
+| Green LED         |           1 | Go indicator           |
+| 7-Segment Display |           1 | Countdown display      |
+| 220Ω Resistors    | As required | Current limiting       |
+| Jumper Wires      |     Several | Electrical connections |
+| USB Cable         |           1 | Programming and power  |
 
 ---
 
-# 📍 Arduino Pin Configuration
+## 📍 Arduino Pin Configuration
 
-## Traffic LEDs
+### Traffic LEDs
 
 | Component     | Arduino Pin |
 | ------------- | ----------: |
@@ -192,7 +154,7 @@ The completed project used the following components:
 | 🟡 Yellow LED |      **12** |
 | 🟢 Green LED  |      **11** |
 
-## 7-Segment Display
+### 7-Segment Display
 
 | Segment | Arduino Pin |
 | ------- | ----------: |
@@ -204,15 +166,13 @@ The completed project used the following components:
 | F       |       **7** |
 | G       |       **8** |
 
-The completed implementation used a **common-anode 7-segment display configuration**.
+The implementation uses a **common-anode 7-segment display**.
 
 ---
 
-# 💻 Software Implementation
+## 💻 Software
 
-The system was programmed using the **Arduino IDE** and Arduino-compatible **C/C++ syntax**.
-
-The source code was organized into several functions to make the program easier to understand and maintain.
+The system was programmed using the **Arduino IDE** and Arduino-compatible **C/C++**.
 
 ### Main Functions
 
@@ -225,58 +185,9 @@ countdown()
 loop()
 ```
 
----
+The `countdown()` function coordinates the active traffic LED, displayed number, timing interval, and completion of each state.
 
-## `setup()`
-
-The `setup()` function initializes the Arduino pins and prepares the traffic LEDs and 7-segment display for operation.
-
-It configures the required pins as outputs and ensures that the system starts in a known state.
-
----
-
-## `resetLights()`
-
-The `resetLights()` function turns off the traffic LEDs before activating the LED associated with the next state.
-
-This prevents multiple traffic signals from remaining active at the same time.
-
----
-
-## `clearDisplay()`
-
-The `clearDisplay()` function turns off the 7-segment display segments when the countdown is not being displayed.
-
----
-
-## `displayDigit()`
-
-The `displayDigit()` function controls the individual segments of the 7-segment display to represent numerical values.
-
-The function works with the digit mapping used by the common-anode display.
-
----
-
-## `countdown()`
-
-The `countdown()` function controls the countdown sequence for each traffic-light state.
-
-The function:
-
-1. Activates the selected traffic LED.
-2. Displays the current countdown number.
-3. Waits approximately one second.
-4. Decreases the displayed number.
-5. Continues until the countdown is complete.
-6. Clears the display.
-
----
-
-# 🔁 Program Execution
-
-The completed program executes the traffic-light sequence continuously.
-
-The main sequence is equivalent to:
+The main sequence is:
 
 ```cpp
 countdown(5, redled);
@@ -284,40 +195,19 @@ countdown(2, yellowled);
 countdown(5, greenled);
 ```
 
-This produces:
-
-```text
-┌─────────────────────────────┐
-│       RED — 5 seconds       │
-│       5 4 3 2 1 0           │
-└──────────────┬──────────────┘
-               ↓
-┌─────────────────────────────┐
-│     YELLOW — 2 seconds      │
-│          2 1 0              │
-└──────────────┬──────────────┘
-               ↓
-┌─────────────────────────────┐
-│      GREEN — 5 seconds      │
-│       5 4 3 2 1 0           │
-└──────────────┬──────────────┘
-               ↓
-              RED
-               ↓
-             REPEAT
-```
-
 ---
 
-# 🧪 Testing and Verification
+## 🧪 Testing and Verification
 
-After implementation, the system was tested to verify whether the hardware and software operated according to the designed behavior.
+The completed system was tested to verify:
 
-## LED Output Testing
+* Correct LED activation.
+* Correct countdown display.
+* Correct timing duration.
+* Correct state transitions.
+* Continuous operation.
 
-The Red, Yellow, and Green LEDs were tested to verify that the correct LED activated during each state.
-
-### Expected Result
+### Expected State Behavior
 
 ```text
 S0 → Red ON
@@ -325,152 +215,69 @@ S1 → Yellow ON
 S2 → Green ON
 ```
 
-The state-based output behavior followed the designed sequence.
-
----
-
-## 7-Segment Display Testing
-
-The 7-segment display was tested to verify the countdown sequence.
-
-### Red State
+### Countdown Testing
 
 ```text
-5 → 4 → 3 → 2 → 1 → 0
+Red:     5 → 4 → 3 → 2 → 1 → 0
+Yellow:  2 → 1 → 0
+Green:   5 → 4 → 3 → 2 → 1 → 0
 ```
 
-### Yellow State
-
-```text
-2 → 1 → 0
-```
-
-### Green State
-
-```text
-5 → 4 → 3 → 2 → 1 → 0
-```
-
-The display was used as a visual representation of the remaining duration of the active state.
-
----
-
-## ⏱️ Timing Testing
-
-The programmed durations were verified according to the project design.
-
-| State  | Target Duration |
-| ------ | --------------: |
-| Red    |       5 seconds |
-| Yellow |       2 seconds |
-| Green  |       5 seconds |
-
-The timing sequence was successfully integrated with the LED and display behavior.
-
----
-
-## 🔄 State Transition Testing
-
-The complete sequence was tested to verify that the controller correctly moved between states.
+The complete state sequence was verified as:
 
 ```text
 S0 → S1 → S2 → S0
 ```
 
-The system returned to the Red state after completing the Green state, allowing continuous operation.
+---
+
+## 🐛 Debugging
+
+During development, hardware and software issues were addressed through:
+
+* Checking LED and display wiring.
+* Verifying Arduino pin assignments.
+* Correcting 7-segment digit mappings.
+* Checking state transitions.
+* Verifying countdown behavior.
+* Testing programmed timing.
+
+These debugging activities helped ensure that the final system operated according to its design.
 
 ---
 
-# 🐛 Debugging and Issues Encountered
+## ⚠️ Limitations
 
-During development and testing, several implementation issues were encountered and addressed.
-
-### Wiring Issues
-
-Incorrect or misplaced connections could cause LEDs or display segments to behave unexpectedly.
-
-The wiring was checked against the defined Arduino pin configuration.
-
-### 7-Segment Display Issues
-
-Incorrect segment indexing or digit mapping could result in incorrect numbers being displayed.
-
-The display mapping and corresponding Arduino connections were verified.
-
-### Function and Sequence Issues
-
-Incorrect function calls or sequencing could cause the traffic signals to activate incorrectly.
-
-The state sequence and countdown function calls were checked to ensure the correct order:
-
-```text
-RED → YELLOW → GREEN
-```
-
-### Timing Considerations
-
-The implementation uses `delay(1000)` for the one-second countdown interval.
-
-Although this approach is simple and appropriate for the project's scope, `delay()` blocks normal program execution while waiting.
-
----
-
-# ⚠️ Project Limitations
-
-The completed project has a deliberately simple scope appropriate for a first-year BSIT culminating project.
+The completed system intentionally maintains a simple scope appropriate for a first-year BSIT project.
 
 Current limitations include:
 
 * Fixed traffic-light durations.
 * No vehicle-detection sensors.
-* No pedestrian button.
-* No pedestrian crossing signal.
-* No buzzer.
+* No pedestrian controls.
 * No wireless connectivity.
 * No real-time traffic monitoring.
-* Timing is implemented using `delay()`.
-
-These limitations provide opportunities for future versions of the project.
+* Timing relies on `delay()`.
 
 ---
 
-# 🚀 Possible Future Improvements
+## 🚀 Future Improvements
 
-Although the current project is complete, it can be expanded in future development.
+Possible future versions could include:
 
-### 1. Non-Blocking Timing
+* Non-blocking timing using `millis()`.
+* Pedestrian crossing controls.
+* Vehicle-detection sensors.
+* Warning buzzer.
+* ESP32/ESP8266 connectivity.
+* Remote monitoring.
+* Dynamic traffic-light timing.
 
-The `delay()`-based timing could be replaced with `millis()` to allow the Arduino to perform additional tasks while maintaining the traffic-light timing.
-
-### 2. Pedestrian Crossing System
-
-A push button and pedestrian signal could be added to allow pedestrians to request a crossing cycle.
-
-### 3. Traffic Detection
-
-Infrared or other sensors could be introduced to detect vehicles and dynamically modify the traffic sequence.
-
-### 4. Warning Buzzer
-
-A buzzer could be added to provide an audible warning during specific states.
-
-### 5. IoT Integration
-
-An ESP8266 or ESP32 could be used in a future version to provide:
-
-* Wi-Fi connectivity
-* Remote monitoring
-* Online data collection
-* Remote control
-* Smart traffic-management features
-
-These features are considered possible future improvements rather than requirements of the completed project.
+These features are outside the scope of the completed project but provide opportunities for future development.
 
 ---
 
-# 📂 Repository Structure
-
-The completed GitHub repository is organized as follows:
+## 📂 Repository Structure
 
 ```text
 arduino-timed-traffic-signal/
@@ -500,32 +307,28 @@ arduino-timed-traffic-signal/
 
 ---
 
-# 📚 Technologies and Tools Used
+## 🛠️ Technologies and Tools
 
-| Technology / Tool       | Purpose                                          |
-| ----------------------- | ------------------------------------------------ |
-| **Arduino Uno**         | Microcontroller                                  |
-| **Arduino IDE**         | Programming and uploading code                   |
-| **Arduino C/C++**       | System programming                               |
-| **7-Segment Display**   | Countdown output                                 |
-| **LEDs**                | Traffic signal indicators                        |
-| **Breadboard**          | Circuit prototyping                              |
-| **Tinkercad / Proteus** | Circuit simulation                               |
-| **GitHub**              | Source-code and project documentation management |
+* **Arduino Uno**
+* **Arduino IDE**
+* **Arduino C/C++**
+* **7-Segment Display**
+* **LEDs**
+* **Breadboard**
+* **Tinkercad / Proteus**
+* **GitHub**
 
 ---
 
-# 🎓 Skills Demonstrated
-
-The completed project demonstrates the following first-year BSIT skills:
+## 🎓 Skills Demonstrated
 
 ### Programming
 
-* Arduino C/C++ programming
+* C/C++ programming
 * Functions
 * Variables
-* Conditional logic
 * Loops
+* Conditional logic
 * Digital output control
 
 ### Digital Logic
@@ -534,13 +337,12 @@ The completed project demonstrates the following first-year BSIT skills:
 * State representation
 * State transitions
 * Truth tables
-* Boolean expressions
+* Boolean logic
 
 ### Hardware
 
 * Arduino Uno
-* LEDs
-* Resistors
+* LEDs and resistors
 * 7-segment display
 * Breadboard wiring
 * Digital pins
@@ -549,74 +351,45 @@ The completed project demonstrates the following first-year BSIT skills:
 
 * Hardware troubleshooting
 * Software debugging
-* Display debugging
 * Timing verification
 * System testing
 
-### Technical Documentation
+### Documentation
 
 * System design
 * Hardware documentation
 * Software documentation
 * Testing documentation
-* GitHub repository organization
+* GitHub organization
 
 ---
 
-# 📊 Final Project Summary
+## 📊 Final Project Summary
 
-| Category                 | Final Implementation                                                     |
-| ------------------------ | ------------------------------------------------------------------------ |
-| **Project Title**        | Design and Implementation of a Timed Traffic Signal System Using Arduino |
-| **Project Type**         | First-Year BSIT Culminating Project                                      |
-| **Program**              | Bachelor of Science in Information Technology                            |
-| **System Type**          | Sequential State-Based System                                            |
-| **Microcontroller**      | Arduino Uno                                                              |
-| **Programming Language** | Arduino C/C++                                                            |
-| **Traffic States**       | Red → Yellow → Green                                                     |
-| **Red Duration**         | 5 seconds                                                                |
-| **Yellow Duration**      | 2 seconds                                                                |
-| **Green Duration**       | 5 seconds                                                                |
-| **Display**              | 7-Segment Display                                                        |
-| **Logic Concept**        | Sequential Digital Logic                                                 |
-| **Simulation**           | Tinkercad / Proteus                                                      |
-| **Repository**           | GitHub                                                                   |
+| Category             | Final Implementation                |
+| -------------------- | ----------------------------------- |
+| **Project Type**     | First-Year BSIT Culminating Project |
+| **System Type**      | Sequential State-Based System       |
+| **Microcontroller**  | Arduino Uno                         |
+| **Language**         | Arduino C/C++                       |
+| **Traffic Sequence** | Red → Yellow → Green                |
+| **Red Duration**     | 5 seconds                           |
+| **Yellow Duration**  | 2 seconds                           |
+| **Green Duration**   | 5 seconds                           |
+| **Display**          | 7-Segment Display                   |
+| **Logic**            | Sequential Digital Logic            |
+| **Simulation**       | Tinkercad / Proteus                 |
+| **Status**           | **Completed**                       |
 
 ---
 
-# ✅ Project Completion Status
+## 🏁 Conclusion
 
-The project has been completed according to its defined objectives.
+**Design and Implementation of a Timed Traffic Signal System Using Arduino** successfully demonstrates the practical application of foundational BSIT knowledge.
 
-### Completed Components
+By combining **programming, sequential digital logic, Arduino hardware, LED control, countdown display, testing, and debugging**, the project provides a practical representation of the skills developed during the first year of the BSIT program.
 
-* [x] Project planning
-* [x] System design
-* [x] State definition
-* [x] Digital logic design
-* [x] Arduino programming
-* [x] Traffic LED control
-* [x] 7-segment countdown
-* [x] State transitions
-* [x] Timing implementation
-* [x] System testing
-* [x] Debugging
-* [x] Technical documentation
-* [x] GitHub project organization
-
----
-
-# 🏁 Conclusion
-
-**Design and Implementation of a Timed Traffic Signal System Using Arduino** was successfully developed as a **First-Year BSIT Culminating Project**.
-
-The completed system demonstrates how foundational concepts from the first year of the BSIT program can be combined to create a functional embedded-system application.
-
-By integrating an Arduino Uno, traffic LEDs, a 7-segment display, programmed timing, and sequential state logic, the project successfully demonstrates the relationship between **software, digital logic, and hardware**.
-
-The project also provided practical experience in programming, circuit implementation, debugging, testing, and technical documentation.
-
-Ultimately, the project represents the completion and practical application of the student's foundational first-year BSIT knowledge and skills.
+It serves as a completed academic project demonstrating the integration of software and hardware to solve a simple real-world problem.
 
 ---
 
@@ -628,18 +401,16 @@ Design and Implementation of a Timed Traffic Signal System Using Arduino
 **Program:**
 Bachelor of Science in Information Technology (BSIT)
 
-**Project Classification:**
+**Classification:**
 First-Year BSIT Culminating Project
 
-**Project Status:**
+**Status:**
 **Completed**
 
 **Primary Technology:**
 Arduino Uno
 
 **Academic Focus:**
-Digital Logic, Programming, and Embedded Systems
-
----
+Programming, Digital Logic, and Embedded Systems
 
 > **A practical demonstration of first-year BSIT knowledge through programming, digital logic, hardware implementation, and problem-solving.**
